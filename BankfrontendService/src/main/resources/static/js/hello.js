@@ -11,7 +11,7 @@ function login(){
 			if(data){
 					alert("Welcome" + data.username);					
 				//window.location.href = "http://eportal-service.mybluemix.net/home.html";
-					window.location.href = "http://localhost:5008/home.html";
+					window.location.href = "https://bankfrontendservice.mybluemix.net/home.html";
 				}				
 		}		
 	});
