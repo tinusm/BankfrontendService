@@ -4,7 +4,7 @@
 
 function login(){
 		//$.ajax({url:"http://kannann1-edge-server.mybluemix.net/authenticate/"+$("#username").val()+"/"+$("#password").val(), 
-	$.ajax({url:"http://kannann1-edge-server.mybluemix.net/authenticate/"+$("#username").val()+"/"+$("#password").val(),
+	$.ajax({url:"http://bankauthenticationservice.mybluemix.net/authenticate/"+$("#username").val()+"/"+$("#password").val(),
 				headers:{"X-IBM-Client-ID": "4b67589f-047d-4b56-84ac-d0d27fa66b52", "x-ibm-client-secret": "a59g2f9m--7ef8"}, 		
 				type: "GET",
 				success: function(data){
