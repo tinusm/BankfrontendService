@@ -8,10 +8,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'UploadCtrl'
     }).
 
-    when('/dashboard', {
+    when('/details', {
        // templateUrl: 'templates/dashboard.html',
     	templateUrl: '/details.html',
-        controller: 'DashCtrl'
+       // controller: 'DashCtrl'
     }).
 
     when('/login', {
