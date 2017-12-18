@@ -1,0 +1,152 @@
+<br><br>
+<div class="row col-md-12">
+    <div>
+        <h1 align="center">Summary of results</h1>
+        <table class="table table-bordered">
+        <tr>
+        <th>Overall safety stock</th><th>Overall Avg Stock</th><th>Overall Max stock</th>
+        <th>Overall service target</th><th>Overall lead time</th>
+        </tr>
+        <tr>
+        <td>{{safety_stock | number : 2 }}</td><td>{{avg_stock | number : 2}}</td><td>{{max_stock | number : 2 }}</td><td>{{service_target | number : 2 }}</td><td>{{lead_time | number : 2 }}</td>
+        </tr>
+        </table><select id="skulocationid" ng-model="skucodelocationItem" ng-change="check()">
+        <option value="" selected>--Select--</option>
+        </select>
+        <table class="table table-bordered">
+        <tr>
+        <th>Overall safety stock</th><th>Overall Avg Stock</th><th>Overall Max stock</th>
+        <th>Overall service target</th><th>Overall lead time</th>
+        </tr>
+        <tr>
+        <td>{{safety_stock1 | number : 2 }}</td><td>{{avg_stock1 | number : 2 }}</td><td>{{max_stock1 | number : 2 }}</td><td>{{service_target1 | number : 2 }}</td><td>{{lead_time1 | number : 2 }}</td>
+        </tr>
+        </table>
+        </div>
+        <div>
+        <h1 align="center">Magic Dashboard</h1>
+        <h2>Select the columns</h2>
+        <span class="container">
+        <label class="col-xs-3" ng-repeat="(e1,enabled) in enabled1">
+        <input type="checkbox" ng-model="enabled1[e1]"> {{e1}} 
+    	</label>
+    	<!-- <button ng-click="exportData()">Export</button> -->
+    	<a download="download.xls" class="col-xs-3" onclick="return ngTableExcelExport.excel(this, 'exportable', 'Data');"><i class="fa fa-cloud-download">&nbsp;&nbsp;</i>Export all to Excel</a>
+        </span><table id="exportable" ng-table="tableParams" show-filter="true" class="table table-bordered responstable">
+            <tr ng-repeat="row in $data">
+              <td	data-title="'source_type'" sortable="'source_type'" ng-show="enabled1.source_type" filter="{'source_type':'select'}" filter-data='filterAgentStatus($column)'>{{row.source_type}}</td>
+<td	data-title="'Source'" sortable="'source'" ng-show="enabled1.source" filter="{'source':'select'}" filter-data='filterAgentStatus($column)'>{{row.source}}</td>
+<td	data-title="'SKU'" sortable="'sku'" class="ng-hide" ng-show="enabled1.sku" filter="{'sku':'text'}">{{row.sku}}</td>
+<td	data-title="'SKUName'" sortable="'skuName'" ng-show="enabled1.skuName" filter="{'skuName':'select'}" filter-data='filterAgentStatus($column)'>{{row.skuName}}</td>
+<td	data-title="'Location'" sortable="'location'" ng-show="enabled1.location" filter="{'location':'select'}" filter-data='filterAgentStatus($column)'>{{row.location}}</td>
+<td	data-title="'LocationType'" sortable="'location_type'" class="ng-hide" ng-show="enabled1.location_type" filter="{'location_type':'text'}">{{row.location_type}}</td>
+<td	data-title="'LocationLayer'" sortable="'location_layer'" class="ng-hide" ng-show="enabled1.location_layer" filter="{'location_layer':'text'}">{{row.location_layer}}</td>
+<td	data-title="'SkuLocation'" sortable="'skuLocation'" ng-show="enabled1.skuLocation" filter="{'skuLocation':'select'}" filter-data='filterAgentStatus($column)'>{{row.skuLocation}}</td>
+<td	data-title="'Category'" sortable="'category'" ng-show="enabled1.category" filter="{'category':'select'}" filter-data='filterAgentStatus($column)'>{{row.category}}</td>
+<td	data-title="'ServiceLevel'" sortable="'service_level'" class="ng-hide" ng-show="enabled1.service_level" filter="{'service_level':'text'}">{{row.service_level}}</td>
+<td	data-title="'SkuClassification'" sortable="'sku_classification'" class="ng-hide" ng-show="enabled1.sku_classification" filter="{'sku_classification':'text'}">{{row.sku_classification}}</td>
+<td	data-title="'ProductionTime'" sortable="'production_time'" class="ng-hide" ng-show="enabled1.production_time" filter="{'production_time':'text'}">{{row.production_time | number : 2 }}</td>
+<td	data-title="'QATime'" sortable="'qa_time'" ng-show="enabled1.qa_time" filter="{'qa_time':'text'}">{{row.qa_time | number : 2 }}</td>
+<td	data-title="'TransitTime'" sortable="'transit_time'" ng-show="enabled1.transit_time" filter="{'transit_time':'text'}">{{row.transit_time | number : 2 }}</td>
+<td	data-title="'PlanningPeriod'" sortable="'planning_period'" ng-show="enabled1.planning_period" filter="{'planning_period':'text'}">{{row.planning_period | number : 2 }}</td>
+<td	data-title="'FrozenPeriod'" sortable="'frozen_period'" class="ng-hide" ng-show="enabled1.frozen_period" filter="{'frozen_period':'text'}">{{row.frozen_period | number : 2 }}</td>
+<td	data-title="'AvgLeadTime'" sortable="'avg_lead_time'" ng-show="enabled1.avg_lead_time" filter="{'avg_lead_time':'text'}">{{row.avg_lead_time | number : 2 }}</td>
+<td	data-title="'OR_Value'" sortable="'or_value'" ng-show="enabled1.or_value" filter="{'or_value':'text'}">{{row.or_value}}</td>
+<td	data-title="'OtherLeadTime'" sortable="'other_lead_time'" class="ng-hide" ng-show="enabled1.other_lead_time" filter="{'other_lead_time':'text'}">{{row.other_lead_time | number : 2 }}</td>
+<td	data-title="'LeadTimeVariability'" sortable="'lead_time_variability'" class="ng-hide" ng-show="enabled1.lead_time_variability" filter="{'lead_time_variability':'text'}">{{row.lead_time_variability | number : 2 }}</td>
+<td	data-title="'Current_SSweeks'" sortable="'current_ssweeks'" class="ng-hide" ng-show="enabled1.current_ssweeks" filter="{'current_ssweeks':'text'}">{{row.current_ssweeks | number : 2 }}</td>
+<td	data-title="'Price'" sortable="'price'" class="ng-hide" ng-show="enabled1.price" filter="{'price':'text'}">{{row.price | number : 2 }}</td>
+<td	data-title="'Username'" sortable="'username'" class="ng-hide" ng-show="enabled1.username" filter="{'username':'select'}" filter-data='filterAgentStatus($column)'>{{row.username}}</td>
+<td	data-title="'AverageWeeklyDemand'" sortable="'average_weekly_demand'" class="ng-hide" ng-show="enabled1.average_weekly_demand" filter="{'average_weekly_demand':'text'}">{{row.ipmModel.average_weekly_demand}}</td>
+<td	data-title="'SDFEper'" sortable="'sdfe_per'" class="ng-hide" ng-show="enabled1.sdfe_per" filter="{'sdfe_per':'text'}">{{row.ipmModel.sdfe_per}}</td>
+<td	data-title="'SDFE'" sortable="'sdfe'" class="ng-hide" ng-show="enabled1.sdfe" filter="{'sdfe':'text'}">{{row.ipmModel.sdfe}}</td>
+<td	data-title="'LotSizes'" sortable="'lot_sizes'" class="ng-hide" ng-show="enabled1.lot_sizes" filter="{'lot_sizes':'text'}">{{row.ipmModel.lot_sizes}}</td>
+<td	data-title="'OR_Delivery'" sortable="'or_delivery'" class="ng-hide" ng-show="enabled1.or_delivery" filter="{'or_delivery':'text'}">{{row.ipmModel.or_delivery}}</td>
+<td	data-title="'Cycle_Time'" sortable="'cycle_time'" class="ng-hide" ng-show="enabled1.cycle_time" filter="{'cycle_time':'text'}">{{row.ipmModel.cycle_time}}</td>
+<td	data-title="'AvgReplenLeadTime'" sortable="'avg_replen_lead_time'" class="ng-hide" ng-show="enabled1.avg_replen_lead_time" filter="{'avg_replen_lead_time':'text'}">{{row.ipmModel.avg_replen_lead_time | number : 2 }}</td>
+<td	data-title="'SD_Variability'" sortable="'sd_variability'" class="ng-hide" ng-show="enabled1.sd_variability" filter="{'sd_variability':'text'}">{{row.ipmModel.sd_variability}}</td>
+<td	data-title="'CFactorSales'" sortable="'c_factor_sales'" class="ng-hide" ng-show="enabled1.c_factor_sales" filter="{'c_factor_sales':'text'}">{{row.ipmModel.c_factor_sales}}</td>
+<td	data-title="'KFactorSales'" sortable="'k_factor_sales'" class="ng-hide" ng-show="enabled1.k_factor_sales" filter="{'k_factor_sales':'text'}">{{row.ipmModel.k_factor_sales}}</td>
+<td	data-title="'CycleServiceLevel'" sortable="'cycle_service_level'" class="ng-hide" ng-show="enabled1.cycle_service_level" filter="{'cycle_service_level':'text'}">{{row.ipmModel.cycle_service_level}}</td>
+<td	data-title="'Bias'" sortable="'bias'" class="ng-hide" ng-show="enabled1.bias" filter="{'bias':'text'}">{{row.ipmModel.bias}}</td>
+<td	data-title="'BiasNorminv'" sortable="'bias_norminv'" class="ng-hide" ng-show="enabled1.bias_norminv" filter="{'bias_norminv':'text'}">{{row.ipmModel.bias_norminv}}</td>
+<td	data-title="'Adjusted_sdfe'" sortable="'adjusted_sdfe'" class="ng-hide" ng-show="enabled1.adjusted_sdfe" filter="{'adjusted_sdfe':'text'}">{{row.ipmModel.adjusted_sdfe}}</td>
+<td	data-title="'Final_unbiased_sdfe'" sortable="'final_unbiased_sdfe'" class="ng-hide" ng-show="enabled1.final_unbiased_sdfe" filter="{'final_unbiased_sdfe':'text'}">{{row.ipmModel.final_unbiased_sdfe}}</td>
+<td	data-title="'ModelSafetyStock'" sortable="'model_safety_stock'" class="ng-hide" ng-show="enabled1.model_safety_stock" filter="{'model_safety_stock':'text'}">{{row.ipmModel.model_safety_stock}}</td>
+<td	data-title="'ModelSafetyStock_weeks'" sortable="'model_safety_stock_weeks'" class="ng-hide" ng-show="enabled1.model_safety_stock_weeks" filter="{'model_safety_stock_weeks':'text'}">{{row.ipmModel.model_safety_stock_weeks | number : 2 }}</td>
+<td	data-title="'ModelSafetyStock_days'" sortable="'model_safety_stock_days'" class="ng-hide" ng-show="enabled1.model_safety_stock_days" filter="{'model_safety_stock_days':'text'}">{{row.ipmModel.model_safety_stock_days}}</td>
+<td	data-title="'MinstockAftcapping_weeks'" sortable="'minstock_aftcapping_weeks'" class="ng-hide" ng-show="enabled1.minstock_aftcapping_weeks" filter="{'minstock_aftcapping_weeks':'text'}">{{row.ipmModel.minstock_aftcapping_weeks | number : 2 }}</td>
+<td	data-title="'Maxstock_weeks'" sortable="'maxstock_weeks'" class="ng-hide" ng-show="enabled1.maxstock_weeks" filter="{'maxstock_weeks':'text'}">{{row.ipmModel.maxstock_weeks | number : 2 }}</td>
+<td	data-title="'Minstock_aftcapping_cs'" sortable="'minstock_aftcapping_cs'" class="ng-hide" ng-show="enabled1.minstock_aftcapping_cs" filter="{'minstock_aftcapping_cs':'text'}">{{row.ipmModel.minstock_aftcapping_cs}}</td>
+<td	data-title="'Maxstock_cs'" sortable="'maxstock_cs'" class="ng-hide" ng-show="enabled1.maxstock_cs" filter="{'maxstock_cs':'text'}">{{row.ipmModel.maxstock_cs}}</td>
+<td	data-title="'Currentss_weeks'" sortable="'currentss_weeks'" class="ng-hide" ng-show="enabled1.currentss_weeks" filter="{'currentss_weeks':'text'}">{{row.ipmModel.currentss_weeks | number : 2 }}</td>
+<td	data-title="'Currentss_value'" sortable="'currentss_value'" class="ng-hide" ng-show="enabled1.currentss_value" filter="{'currentss_value':'text'}">{{row.ipmModel.currentss_value | number : 2 }}</td>
+<td	data-title="'Proposed_IPMSS_value'" sortable="'proposed_ipmss_value'" class="ng-hide" ng-show="enabled1.proposed_ipmss_value" filter="{'proposed_ipmss_value':'text'}">{{row.ipmModel.proposed_ipmss_value | number : 2 }}</td>
+<td	data-title="'MinNorms_weeks'" sortable="'min_norms_weeks'" class="ng-hide" ng-show="enabled1.min_norms_weeks" filter="{'min_norms_weeks':'text'}">{{row.ipmModel.min_norms_weeks | number : 2 }}</td>
+<td	data-title="'MaxNorms_weeks'" sortable="'max_norms_weeks'" class="ng-hide" ng-show="enabled1.max_norms_weeks" filter="{'max_norms_weeks':'text'}">{{row.ipmModel.max_norms_weeks | number : 2 }}</td>
+<td	data-title="'MinNormsFinal'" sortable="'min_norms_final'" class="ng-hide" ng-show="enabled1.min_norms_final" filter="{'min_norms_final':'text'}">{{row.ipmModel.min_norms_final}}</td>
+<td	data-title="'MaxNormsFinal'" sortable="'max_norms_final'" class="ng-hide" ng-show="enabled1.max_norms_final" filter="{'max_norms_final':'text'}">{{row.ipmModel.max_norms_final}}</td>
+<td	data-title="'MinStockValue'" sortable="'minstock_value'" class="ng-hide" ng-show="enabled1.minstock_value" filter="{'minstock_value':'text'}">{{row.ipmModel.minstock_value | number : 2}}</td>
+<td	data-title="'MaxStockValue'" sortable="'maxstock_value'" class="ng-hide" ng-show="enabled1.maxstock_value" filter="{'maxstock_value':'text'}">{{row.ipmModel.maxstock_value | number : 2}}</td>
+<td	data-title="'AvgCycleStock'" sortable="'avg_cycle_stock'" class="ng-hide" ng-show="enabled1.avg_cycle_stock" filter="{'avg_cycle_stock':'text'}">{{row.ipmModel.avg_cycle_stock | number : 2}}</td>
+
+            </tr>
+        </table>
+    </div>
+    <div>
+    
+    <h2 align="center">Source unit</h2>
+        <table ng-table="tableParams1" show-filter="true" class="table table-bordered">
+            <tr ng-repeat="row in $data">
+                <td data-title="'Source'" id='source' sortable="'source'" filter="{ 'source': 'select' }" filter-data='filterAgentStatus($column)'>{{row.source}}</td>
+                <td data-title="'SourceType'" id='source_type' sortable="'source_type'">{{row.source_type}}</td>
+                <td data-title="'SkuName'" sortable="'skuname'" >{{row.skuName}}</td>
+                <td data-title="'FrozenPeriod'" sortable="'frozen_period'">{{row.frozen_period | number : 2 }}</td>
+                <td data-title="'Category'" sortable="'category'" filter="{ 'category': 'select' }" filter-data='filterAgentStatus($column)'>{{row.category}}</td>
+                <td data-title="'ServiceLevel'" sortable="'service_level'" >{{row.service_level}}</td>
+                <td data-title="'Price'" sortable="'price'" >{{row.price | number : 2 }}</td>
+                <td data-title="'MinStock'" sortable="'minstock_value'">{{row.ipmModel.minstock_value | number : 2 }}</td>
+                <td data-title="'MaxStock'" sortable="'maxstock_value'">{{row.ipmModel.maxstock_value | number : 2 }}</td>
+                <td data-title="'AvgCycleStock'" sortable="'avg_cycle_stock'">{{row.ipmModel.avg_cycle_stock | number : 2 }}</td>
+                <td data-title="'ORValue'" sortable="'or_value'">{{row.or_value}}</td>
+                <td data-title="'AvgLeadTime'" sortable="'avg_lead_time'">{{row.avg_lead_time | number : 2 }}</td>
+            </tr>
+        </table>
+        
+         <h2 align="center">Depot center</h2>
+        <table ng-table="tableParams2" show-filter="true" class="table table-bordered">
+            <tr ng-repeat="row in $data">
+                <td data-title="'Location'" sortable="'location'"  filter="{ 'location': 'select' }" filter-data='filterAgentStatus($column)'>{{row.location}}</td>
+                <td data-title="'LocationType'" sortable="'location_type'" >{{row.location_type}}</td>
+                <td data-title="'Source'" id='source' sortable="'source'">{{row.source}}</td>
+                <td data-title="'SourceType'" id='source_type' sortable="'source_type'">{{row.source_type}}</td>
+                <td data-title="'SkuName'" sortable="'skuname'" >{{row.skuName}}</td>
+                <td data-title="'FrozenPeriod'" sortable="'frozen_period'">{{row.frozen_period | number : 2 }}</td>
+                <td data-title="'Category'" sortable="'category'">{{row.category}}</td>
+                <td data-title="'ServiceLevel'" sortable="'service_level'" >{{row.service_level}}</td>
+                <td data-title="'Price'" sortable="'price'" >{{row.price | number : 2 }}</td>
+                <td data-title="'MinStock'" sortable="'minstock_value'">{{row.ipmModel.minstock_value | number : 2 }}</td>
+                <td data-title="'MaxStock'" sortable="'maxstock_value'">{{row.ipmModel.maxstock_value | number : 2 }}</td>
+                <td data-title="'AvgCycleStock'" sortable="'avg_cycle_stock'">{{row.ipmModel.avg_cycle_stock | number : 2 }}</td>
+                <td data-title="'ORValue'" sortable="'or_value'">{{row.or_value}}</td>
+                <td data-title="'AvgLeadTime'" sortable="'avg_lead_time'">{{row.avg_lead_time | number : 2 }}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+    <h1 align="center">Trend Chart</h1>
+            <select id="skulocationcode" ng-model="skucodelocationCode" ng-change="check1()">
+             <option value="" selected>--Select--</option>
+            </select>
+    
+    <table>
+    </table>
+    <canvas id="chart3"></canvas>
+    </div>
+    <div>
+   <div>
+<h2 align="center"><a href="http://localhost:8006//downloadFile"><i class="fa fa-cloud-download">&nbsp;&nbsp;</i>Click here to download IPM Model file</a></h2>
+</div>
+
+    <br><br><br>
+</div>

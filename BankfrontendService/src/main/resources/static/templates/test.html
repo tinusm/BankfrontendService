@@ -1,0 +1,20 @@
+<br><br>
+<br>
+<div>
+<table ng-table="tableParams1" show-filter="true" class="table table-bordered">
+            <tr ng-repeat="row in $data">
+                <td data-title="'Source'" id='source' sortable="'source'" filter="{ 'source': 'text' }">{{row.source}}</td>
+                <td data-title="'SourceType'" id='source_type' sortable="'source_type'">{{row.source_type}}</td>
+                <td data-title="'SkuName'" sortable="'skuname'" >{{row.skuName}}</td>
+                <td data-title="'FrozenPeriod'" sortable="'frozen_period'">{{row.frozen_period | number : 2 }}</td>
+                <td data-title="'Category'" sortable="'category'" filter="{ 'category': 'text' }">{{row.category}}</td>
+                <td data-title="'ServiceLevel'" sortable="'service_level'" >{{row.service_level}}</td>
+                <td data-title="'Price'" sortable="'price'" >{{row.price | number : 2 }}</td>
+                <td data-title="'MinStock'" sortable="'minstock_value'">{{row.ipmModel.minstock_value | number : 2 }}</td>
+                <td data-title="'MaxStock'" sortable="'maxstock_value'">{{row.ipmModel.maxstock_value | number : 2 }}</td>
+                <td data-title="'AvgCycleStock'" sortable="'avg_cycle_stock'">{{row.ipmModel.avg_cycle_stock | number : 2 }}</td>
+                <td data-title="'ORValue'" sortable="'or_value'">{{row.or_value}}</td>
+                <td data-title="'AvgLeadTime'" sortable="'avg_lead_time'">{{row.avg_lead_time | number : 2 }}</td>
+            </tr>
+        </table>
+        </div>

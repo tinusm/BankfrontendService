@@ -1,0 +1,24 @@
+<section>
+    <div class="loginSection"></div>
+   <!--  <div class="grad"></div> --><div class="hul1">
+    <div>Banking  <span>Portal</span></div>
+    </div>
+    <!-- <div class="hul">
+   <img src="Unilever.jpg" id="logo1" align="middle">
+    </div> -->
+    <br>
+    <!-- <form name="sentMessage" id="contactForm" autocomplete="off">-->
+    <div class="login" ng-controller="LoginCtrl">
+    <!-- <div class="col-md-4 col-md-offset-4 login" ng-controller="LoginCtrl"> -->
+    <label for="username"><span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> Username </label>&nbsp
+        <input type="text" placeholder="username" ng-model="user.email" name="user" required data-validation-required-message="Please enter your username"><br><br>
+       <label for="password">Password</label>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <input type="password" placeholder="password" ng-model="user.password" name="password" autocomplete="off" required data-validation-required-message="Please enter your password."><br><br>
+        <button ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> <strong>Login</strong></button>
+        <br><br>
+  <div class="alert alert-danger alert-dismissable ng-hide col-xs-9" ng-show="logfailed1">
+    <a class="close" data-dismiss="alert" aria-label="close">X</a>
+    <strong>Login Failed!</strong>.
+  </div>
+    </div>
+</section>
