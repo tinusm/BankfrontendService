@@ -45,13 +45,13 @@ app.service('StudentService',['$http', function ($http) {
 }]);
 
 app.factory('AuthService', function ($resource) {
-	alert("gggggggggg");
-   // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
-	return $resource('http://bankauthenticationservice.mybluemix.net/authenticate/Admin/Admin', {
+	
+    return $resource('http://hulloginservice.mybluemix.net/user/:action', {
+	//return $resource('http://bankauthenticationservice.mybluemix.net/authenticate/Admin/Admin', {
         action: '@action'
     }, {
         'process': {
-            method: 'GET'
+            method: 'POST'
         }
 
     });
