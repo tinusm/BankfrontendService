@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="hulApp">
 
+
 <head>
-    <title>BANK PORTAL</title>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <title>Summary Page</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-route.min.js"></script>
     <!-- Required meta tags always come first -->
@@ -14,7 +15,7 @@
     <!-- Bootstrap CSS -->
 <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
         crossorigin="anonymous"> -->
-        <link rel="shortcut icon" href="Unilever_logo.jpg" type="image/x-icon" />
+        <!-- <link rel="shortcut icon" href="Unilever_logo.jpg" type="image/x-icon" /> -->
         
         <link rel="stylesheet"
 	href="bower_components/bootstrap/css/bootstrap.min.css">
@@ -23,7 +24,7 @@
 <link rel="stylesheet"
 	href="bower_components/font-awesome/css/font-awesome.css" />
 <link rel="stylesheet"
-	href="bower_components/angular-ui/build/angular-ui.min.css" />
+	href="bower_components/angular-ui/angular-ui.min.css" />
 <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
 
 <link rel="stylesheet"
@@ -32,8 +33,7 @@
 	
 <link rel="stylesheet" href="css/facestypeahead-0.4.4.css"/>
 
-<link href='https://fonts.apis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
+<link href="https://fonts.apis.com/css?family=Open+Sans" rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
@@ -70,7 +70,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
 
 
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
     <script src="scripts/controllers/upload.js"></script>
     <script type="text/javascript">
     
@@ -94,8 +94,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="navbar-nav nav">
                   
-                    <li ng-show="dashboardEnable"><a ng-href="#/dashboard">Dashboard</a></li>
-                    
+                    <li ng-show="accountSummaryEnable"><a ng-href="#/accountSummary">Account Summary</a></li>
+                    <li ng-show="fundTransferEnable"><a ng-href="#/fundTransfer">Fund Transfer</a></li>
+                    <li ng-show="profileEnable"><a ng-href="#/profile">Profile</a></li>
                   
                 </ul>
                 <ul class="navbar-nav nav navbar-right" data-ng-show="authenticated">

@@ -3,15 +3,14 @@ var app = angular.module("hulApp", ['ngRoute', 'chart.js', 'ngResource', 'chart.
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
 
-    when('/upload', {
-        templateUrl: 'templates/upload.html',
+    when('/accountSummary', {
+        templateUrl: 'templates/account.html',
         controller: 'UploadCtrl'
     }).
 
-    when('/details', {
-       // templateUrl: 'templates/dashboard.html',
-    	templateUrl: '/details.html',
-       // controller: 'DashCtrl'
+    when('/fundTransfer', {
+        templateUrl: 'templates/fundTransfer.html',
+        controller: 'DashCtrl'
     }).
 
     when('/login', {
@@ -19,7 +18,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'LoginCtrl'
     }).
     
-    when('/test', {
+    when('/profile', {
         templateUrl: 'templates/test.html',
         controller: 'StudentCtrl'
     }).
@@ -45,8 +44,9 @@ app.service('StudentService',['$http', function ($http) {
 }]);
 
 app.factory('AuthService', function ($resource) {
-	 return $resource('http://hulloginservice.mybluemix.net/user/:action', {
-	//return $resource('http://bankauthenticationservice.mybluemix.net/authenticate/Admin/Admin', {
+   // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
+    	return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=Admin & password=Admin', {	
+    	
         action: '@action'
     }, {
         'process': {
@@ -197,8 +197,7 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
                 $rootScope.user = response.name;
                 $rootScope.role = response.role;
                 manageMenu();
-              //  $location.url('/dashboard');
-                $location.url('/details');
+                $location.url('/accountSummary');
             } else {
                 $scope.logfailed1 = true
                 $rootScope.$broadcast('Login Failed');
@@ -404,12 +403,6 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
     	$scope.safety_stock = data.safety_stock;
     	$scope.service_target = data.service_target;
     	$scope.lead_time = data.lead_time;
-    	$scope.max_stock1 = data.max_stock;
-    	$scope.min_stock1= data.min_stock;
-    	$scope.avg_stock1= data.avg_stock;
-    	$scope.safety_stock1 = data.safety_stock;
-    	$scope.service_target1 = data.service_target;
-    	$scope.lead_time1 = data.lead_time;
     }, function(reason){
     	
     });
@@ -627,7 +620,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
     	    $('<option />', {value: response.data[i], text: response.data[i]}).appendTo(s);
     	    $('<option />', {value: response.data[i], text: response.data[i]}).appendTo(s1);
     	}
-    /*	$http.get("http://localhost:8001/dashboard1/"+skulocation)
+    	$http.get("http://localhost:8001/dashboard1/"+skulocation)
         .then(function(response){
         	var data = response.data;
         	$scope.max_stock1 = data.max_stock;
@@ -638,7 +631,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
         	$scope.lead_time1 = data.lead_time;
         }, function(reason){
         	
-        });*/
+        });
     	
     	
     	$http.get("http://localhost:8001/pastsales/"+skulocation)
