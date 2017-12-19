@@ -24,7 +24,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).
 
     otherwise({
-        redirectTo: '/login'
+        redirectTo: 'templates/login.html'
     });
 
 }]);
