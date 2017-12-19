@@ -29,7 +29,7 @@ section {
 
 .hul1 {
     position: absolute;
-    top: calc(30%);
+    top: 100px;
     left: 540px;
     z-index: 2;
 }
@@ -38,7 +38,7 @@ section {
     float: center;
     color: #007ca5;
     font-family: 'Exo', sans-serif;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: 200;
 }
 
