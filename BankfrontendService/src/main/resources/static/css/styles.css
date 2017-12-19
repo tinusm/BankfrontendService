@@ -28,7 +28,7 @@ section {
 }
 
 .hul1 {
-    /* position: absolute; */
+    position: absolute; 
     top: 200px;
     left: 600px;
     z-index: 2;
