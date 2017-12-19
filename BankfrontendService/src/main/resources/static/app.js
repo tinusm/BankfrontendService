@@ -44,8 +44,8 @@ app.service('StudentService',['$http', function ($http) {
 }]);
 
 app.factory('AuthService', function ($resource) {
-   // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
-    	return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=Admin & password=Admin', {	
+   return $resource('http://hulloginservice.mybluemix.net/user/:action', {
+    //	return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=Admin & password=Admin', {	
     	
         action: '@action'
     }, {
