@@ -191,12 +191,12 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
         $scope.loginmessage = 'Sign-In Progress....';
 
         AuthService.process({
-        	alert("11111");
+        	
         	username: $scope.user.email,
             password: $scope.user.password
         }, $scope.user, function (response) {
-        	alert("2222222222");
-            if (response && response.username) {
+        	
+            if (response) {
                 console.log('Got Authentication Response');
                 $rootScope.$broadcast('auth-login-success');
                 $rootScope.authenticated = true;
