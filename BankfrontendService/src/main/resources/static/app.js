@@ -194,12 +194,12 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
             username: $scope.user.email,
             password: $scope.user.password
         }, $scope.user, function (response) {
-            if (response && response.name && response.role) {
+            if (response && response.username) {
                 console.log('Got Authentication Response');
                 $rootScope.$broadcast('auth-login-success');
                 $rootScope.authenticated = true;
-                $rootScope.user = response.name;
-                $rootScope.role = response.role;
+                $rootScope.user = response.username;
+              //  $rootScope.role = response.role;
                 manageMenu();
                 $location.url('/accountSummary');
             } else {
