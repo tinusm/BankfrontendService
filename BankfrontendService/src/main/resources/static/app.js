@@ -17,7 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
     }).
-    
+    login
     when('/profile', {
         templateUrl: 'templates/test.html',
         controller: 'StudentCtrl'
@@ -45,11 +45,11 @@ app.service('StudentService',['$http', function ($http) {
 
 app.factory('AuthService', function ($resource) {
 	
-	alert("111111111111");
+	
    
   // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
    return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=:username & password=:password', {	
-	   alert("222222222222");	
+	
         username: '@username',
         password: '@password'
     }, {
