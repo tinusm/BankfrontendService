@@ -44,13 +44,15 @@ app.service('StudentService',['$http', function ($http) {
 }]);
 
 app.factory('AuthService', function ($resource) {
-   return $resource('http://hulloginservice.mybluemix.net/user/:action', {
-    //	return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=Admin & password=Admin', {	
+   
+  // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
+   return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=:username & password=:password', {	
     	
-        action: '@action'
+        username: '@username',
+        password: '@password'
     }, {
         'process': {
-            method: 'POST'
+            method: 'GET'
         }
 
     });
@@ -172,6 +174,7 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
     $rootScope.logout = function() {
     	
 		console.log('Successfully Logged out');
+		
 		$rootScope.user = {};
 		$rootScope.role = {};
 		$rootScope.$broadcast('auth-logout-success');
@@ -188,7 +191,8 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
         $scope.loginmessage = 'Sign-In Progress....';
 
         AuthService.process({
-            action: 'login'
+            username: $scope.user.email,
+            password: $scope.user.password
         }, $scope.user, function (response) {
             if (response && response.name && response.role) {
                 console.log('Got Authentication Response');
