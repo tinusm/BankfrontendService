@@ -1,4 +1,4 @@
-var app = angular.module("hulApp", ['ngRoute', 'chart.js', 'ngResource', 'chart.js', 'ngTable', 'ui.grid', 'ui.grid.pagination']);
+var app = angular.module("bankApp", ['ngRoute', 'chart.js', 'ngResource', 'chart.js', 'ngTable', 'ui.grid', 'ui.grid.pagination']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
@@ -17,7 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
     }).
-    login
+    
     when('/profile', {
         templateUrl: 'templates/test.html',
         controller: 'StudentCtrl'
@@ -48,17 +48,22 @@ app.factory('AuthService', function ($resource) {
 	
    
   // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
-   return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=:username & password=:password', {	
+ //  return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=:username & password=:password', {	
+	//return $resource('http://localhost:8002/authenticate?username=:username & password=:password', {
+	return $resource('http://localhost:8002/authenticate/:username/:password', {
 	
         username: '@username',
         password: '@password'
     }, {
         'process': {
-            method: 'GET'
+            method: 'POST'
         }
 
     });
 });
+
+
+
 
 app.controller('StudentCtrl', function($scope, $http, ngTableParams, $q, $filter){
 	
