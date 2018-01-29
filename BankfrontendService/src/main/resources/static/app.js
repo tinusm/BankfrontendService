@@ -5,7 +5,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
     when('/accountSummary', {
         templateUrl: 'templates/account.html',
-        controller: 'UploadCtrl'
+        controller: 'AcctCtrl'
     }).
 
     when('/fundTransfer', {
@@ -157,8 +157,9 @@ app.directive('fileModel', ['$parse', function ($parse) {
 
 
 app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $location) {
-    $rootScope.dashboardEnable = false;
-    $rootScope.uploadEnable = false;
+	$rootScope.accountSummaryEnable = false;
+    $rootScope.fundTransferEnable = false;
+    $rootScope.profileEnable = false;
     
     $http.get("http://localhost:8001/inputrepo").then(
     		function(res){
@@ -169,12 +170,15 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
    
 
     function manageMenu() {
-        if ($rootScope.role == 'Planner') {
-            $rootScope.uploadEnable = true;
-            $rootScope.dashboardEnable = true;
+    	 var test2 = localStorage.getItem("accountId");
+         alert(test2);
+    	
+        if ($rootScope.user == 'Admin') {
+            $rootScope.fundTransferEnable = true;
+            $rootScope.profileEnable = true;
         } else {
-            $rootScope.uploadEnable = false;
-            $rootScope.dashboardEnable = true;
+        	 $rootScope.fundTransferEnable = false;
+             $rootScope.profileEnable = false;
         }
     }
     
@@ -208,6 +212,9 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
                 $rootScope.$broadcast('auth-login-success');
                 $rootScope.authenticated = true;
                 $rootScope.user = response.username;
+                var localstore =response.accountId;
+                localStorage.setItem("accountId", localstore);
+               
               //  $rootScope.role = response.role;
                 manageMenu();
                 $location.url('/accountSummary');
@@ -230,6 +237,22 @@ app.controller('TestCtrl', function($scope, ngTableParams){
 		
 	}
 });
+
+
+app.controller('AcctCtrl', function($scope, $http, $rootScope){
+	$http.get("http://localhost:8001/accountsummary/")
+    .then(function(response){
+    	var data = response.data;
+    	$scope.accountnumber = data.accountnumber;
+    	$scope.customername= data.customername;
+    	$scope.balance= data.balance;
+    	$scope.balance= data.branch;
+    	
+    }, function(reason){
+    	
+    });
+});
+
 
 app.factory('InputParam', ['$resource', function($resource) {
 	return $resource('http://localhost:8001/inputrepo/:id', null,
