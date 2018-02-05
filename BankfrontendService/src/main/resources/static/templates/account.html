@@ -1,14 +1,68 @@
-<!-- Account Summary Page -->
-<br><br>
-<br>
-<div class="row col-md-12">
- <div height: 80px; width: 40% ;align="center" background-color: powderblue;class="login" ng-controller="AcctCtrl">
-   
-        <h3>Account Summary</h3><br><br> 
-        <div align="center">
-        Account No: <input type="text" ng-model="string" name="accountnumber"></input><br><br>
-        Name: <input type="text" ng-model="string" name="customername"></input><br><br>
-        Branch : <input type="text" ng-model="string" name="branch"></input><br><br>
-        Balance : <input type="text" ng-model="string" name="balance"></input><br><br>        
-  </div>
+<div class="form-style-3" align="center">
+<form>
+<fieldset>
+
+<legend ></legend><br></br>
+<span>Account Summary <span class="required">
+<label for="field1"><span>Account No <span class="required"></span></span><input type="text" ng-model="accountnumber" name="accountnumber" readonly/></label>
+<label for="field2"><span>Name <span class="required"></span></span><input type="text" ng-model="customername" name="customername" readonly/></label>
+<label for="field3"><span>Branch <span class="required"></span></span><input type="text" ng-model="branch" name="branch" readonly /></label>
+<label for="field3"><span>Balance <span class="required"></span></span><input type="text" ng-model="balance" name="balance" readonly /></label>
+</fieldset>
+</form>
 </div>
+<style type="text/css">
+.form-style-3{
+    max-width: 2500px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.form-style-3 label{
+    display:block;
+    margin-bottom: 10px;
+}
+.form-style-3 label > span{
+    float: left;
+    width: 100px;
+    color: #010f11;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px 1px #fff;
+}
+.form-style-3 fieldset{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #010f11;
+    padding: 20px;
+    background: #41b2f4;
+    box-shadow: inset 0px 0px 15px #010f11;
+    -moz-box-shadow: inset 0px 0px 15px #010f11;
+    -webkit-box-shadow: inset 0px 0px 15px #010f11;
+}
+
+.form-style-3 textarea{
+    width:250px;
+    height:100px;
+}
+.form-style-3 input[type=text],
+.form-style-3 input[type=date],
+.form-style-3 input[type=datetime],
+.form-style-3 input[type=number],
+.form-style-3 textarea{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid #0ed0ea;
+    outline: none;
+    color: #6a6f70;
+    padding: 5px 8px 5px 8px;
+    box-shadow: inset 1px 1px 4px #FFD5E7;
+    -moz-box-shadow: inset 1px 1px 4px #FFD5E7;
+    -webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
+    background: #FFEFF6;
+    width:20%;
+}
+
+
+</style>

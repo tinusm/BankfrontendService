@@ -4,13 +4,13 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
 
     when('/accountSummary', {
-        templateUrl: 'templates/account.html',
+    	templateUrl: 'templates/account.html',
         controller: 'AcctCtrl'
     }).
 
     when('/fundTransfer', {
         templateUrl: 'templates/fundTransfer.html',
-        controller: 'DashCtrl'
+        controller: 'FundTransCtrl'
     }).
 
     when('/login', {
@@ -19,8 +19,8 @@ app.config(['$routeProvider', function ($routeProvider) {
     }).
     
     when('/profile', {
-        templateUrl: 'templates/test.html',
-        controller: 'StudentCtrl'
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
     }).
 
     otherwise({
@@ -48,8 +48,11 @@ app.factory('AuthService', function ($resource) {
 	
    
   // return $resource('http://hulloginservice.mybluemix.net/user/:action', {
- //  return $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=:username & password=:password', {	
-	//return $resource('http://localhost:8002/authenticate?username=:username & password=:password', {
+ // return
+	// $resource('http://bankauthenticationservice.mybluemix.net/authenticate?username=:username
+	// & password=:password', {
+	// return $resource('http://localhost:8002/authenticate?username=:username &
+	// password=:password', {
 	return $resource('http://localhost:8002/authenticate/:username/:password', {
 	
         username: '@username',
@@ -79,8 +82,9 @@ app.controller('StudentCtrl', function($scope, $http, ngTableParams, $q, $filter
                    params.total(data.page.totalElements);
                    data._embedded.inputrepo = params.sorting() ? $filter('orderBy')(data._embedded.inputrepo, params.orderBy()) : data._embedded.inputrepo;
                    data._embedded.inputrepo = params.filter() ? $filter('filter')(data._embedded.inputrepo, params.filter()) : data._embedded.inputrepo;
-	  //  $scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
-	            //    $defer.resolve($scope.data);
+	  // $scope.data = $scope.data.slice((params.page() - 1) * params.count(),
+		// params.page() * params.count());
+	            // $defer.resolve($scope.data);
                    $defer.resolve(data._embedded.inputrepo);
                    
                 });
@@ -90,52 +94,28 @@ app.controller('StudentCtrl', function($scope, $http, ngTableParams, $q, $filter
 
 });
 
-/*app.controller('StudentCtrl1', ['$scope','StudentService', 
-    function ($scope, StudentService) {
-        var paginationOptions = {
-            pageNumber: 1,
-            pageSize: 5,
-        sort: null
-        };
- 
-    StudentService.getStudents(
-      paginationOptions.pageNumber,
-      paginationOptions.pageSize).success(function(data){
-        $scope.gridOptions.data = data._embedded.inputrepo;
-        $scope.gridOptions.totalItems = data.page.totalElements;
-      });
- 
-    $scope.gridOptions = {
-        paginationPageSizes: [5, 10, 20],
-        paginationPageSize: paginationOptions.pageSize,
-        enableColumnMenus:false,
-    useExternalPagination: true,
-        columnDefs: [
-           { name: 'source_type' },
-           { name: 'source' },
-           { name: 'sku' },
-           { name: 'skuName' },
-           { name: 'location' },
-           { name: 'location_type' },
-           { name: 'location_layer' },
-           { name: 'skuLocation' }
-        ],
-        onRegisterApi: function(gridApi) {
-           $scope.gridApi = gridApi;
-           gridApi.pagination.on.paginationChanged(
-             $scope, 
-             function (newPage, pageSize) {
-               paginationOptions.pageNumber = newPage;
-               paginationOptions.pageSize = pageSize;
-               StudentService.getStudents(newPage,pageSize)
-                 .success(function(data){
-                   $scope.gridOptions.data = data._embedded.inputrepo;
-                   $scope.gridOptions.totalItems = data.page.totalElements;
-                 });
-            });
-        }
-    };
-}]);*/
+/*
+ * app.controller('StudentCtrl1', ['$scope','StudentService', function ($scope,
+ * StudentService) { var paginationOptions = { pageNumber: 1, pageSize: 5, sort:
+ * null };
+ * 
+ * StudentService.getStudents( paginationOptions.pageNumber,
+ * paginationOptions.pageSize).success(function(data){ $scope.gridOptions.data =
+ * data._embedded.inputrepo; $scope.gridOptions.totalItems =
+ * data.page.totalElements; });
+ * 
+ * $scope.gridOptions = { paginationPageSizes: [5, 10, 20], paginationPageSize:
+ * paginationOptions.pageSize, enableColumnMenus:false, useExternalPagination:
+ * true, columnDefs: [ { name: 'source_type' }, { name: 'source' }, { name:
+ * 'sku' }, { name: 'skuName' }, { name: 'location' }, { name: 'location_type' }, {
+ * name: 'location_layer' }, { name: 'skuLocation' } ], onRegisterApi:
+ * function(gridApi) { $scope.gridApi = gridApi;
+ * gridApi.pagination.on.paginationChanged( $scope, function (newPage, pageSize) {
+ * paginationOptions.pageNumber = newPage; paginationOptions.pageSize =
+ * pageSize; StudentService.getStudents(newPage,pageSize)
+ * .success(function(data){ $scope.gridOptions.data = data._embedded.inputrepo;
+ * $scope.gridOptions.totalItems = data.page.totalElements; }); }); } }; }]);
+ */
 
 
 
@@ -172,8 +152,9 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
     function manageMenu() {
     	 var test2 = localStorage.getItem("accountId");
          alert(test2);
+         
     	
-        if ($rootScope.user == 'Admin') {
+        if ($rootScope.user == 'tinu') {
             $rootScope.fundTransferEnable = true;
             $rootScope.profileEnable = true;
         } else {
@@ -181,6 +162,8 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
              $rootScope.profileEnable = false;
         }
     }
+    
+   
     
     $rootScope.logout = function() {
     	
@@ -192,6 +175,7 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
 		$rootScope.authenticated = false;
 		$location.url('/login');
 	};
+	
 
     $scope.login = function () {
 
@@ -215,7 +199,7 @@ app.controller('LoginCtrl', function ($scope, $http, $rootScope, AuthService, $l
                 var localstore =response.accountId;
                 localStorage.setItem("accountId", localstore);
                
-              //  $rootScope.role = response.role;
+              // $rootScope.role = response.role;
                 manageMenu();
                 $location.url('/accountSummary');
             } else {
@@ -239,20 +223,153 @@ app.controller('TestCtrl', function($scope, ngTableParams){
 });
 
 
-app.controller('AcctCtrl', function($scope, $http, $rootScope){
-	$http.get("http://localhost:8001/accountsummary/")
+app.controller('AcctCtrl', function($scope, $http, $rootScope,){
+	function manageMenu4() {
+	   	   
+        $rootScope.fundTransferEnable = true;
+        $rootScope.accountSummaryEnable = false;
+        $rootScope.profileEnable = true;
+   
+}
+	manageMenu4();
+	var accountId = localStorage.getItem("accountId");
+	$http.get("http://localhost:8005/accountsummary/all/"+accountId)
     .then(function(response){
     	var data = response.data;
     	$scope.accountnumber = data.accountnumber;
     	$scope.customername= data.customername;
     	$scope.balance= data.balance;
-    	$scope.balance= data.branch;
+    	$scope.branch= data.branch;
+    	console.log("Tinu" +data.accountnumber);
+    	console.log("Tinu q "+$scope.accountnumber);
     	
     }, function(reason){
     	
     });
 });
 
+app.controller('ProfileCtrl', function($scope, $http, $rootScope,){
+	 function manageMenu2() {
+	   	   
+	           $rootScope.fundTransferEnable = true;
+	           $rootScope.accountSummaryEnable = true;
+	           $rootScope.profileEnable = false;
+	      
+	   }
+	    
+	 manageMenu2();
+	var accountId = localStorage.getItem("accountId");
+	$http.get("http://localhost:8006/profile/all/"+accountId)
+    .then(function(response){
+    	var data = response.data;
+    	$scope.accountid = data.accountid;
+    	$scope.emailid= data.emailid;
+    	$scope.address= data.address;
+    	$scope.phonenumber= data.phonenumber;
+    	console.log("Tinu" +data.accountid);
+    	console.log("Tinu q "+$scope.accountid);
+    	
+    }, function(reason){
+    	
+    });
+	
+	  $scope.updateProfile = function () {
+		  
+		  function sucessupdate() 
+		    {
+		   	   alert("Profile Updated Sucesufully !!!");
+	        }
+		  console.log("Trying to update profile");
+		  var accountid =$scope.accountid;
+		  var emailid =$scope.emailid;
+		  var address =$scope.address;
+		  var phonenumber =$scope.phonenumber;
+		  console.log(accountid,emailid,address,phonenumber);
+		  $http.put('http://localhost:8006/profile/updateprofile/'+accountid+"/"+emailid+"/"+address+"/"+phonenumber);
+		 console.log("Profile Update"); 
+		 sucessupdate(); 
+		      };
+});
+
+app.controller('FundTransCtrl', function($scope, $http, $rootScope,){
+	function manageMenu3() {
+	   	   
+        $rootScope.fundTransferEnable = false;
+        $rootScope.accountSummaryEnable = true;
+        $rootScope.profileEnable = true;
+   
+}
+	manageMenu3();
+	
+	$scope.change = function () {
+       
+		console.log("Inside Fund Transfer");
+		 var s= document.getElementById("accountnumber");
+	     var k=0;
+	     var accountnumber="";
+		 var accountId = localStorage.getItem("accountId");
+			$http.get("http://localhost:8007/fundtransfer/all/"+accountId)
+		    .then(function(response){
+		    	//var data = response.data;
+		    	//$scope.accountnumber= data.accountnumber;
+		    	//console.log("Tinu" +data.accountnumber);
+		    	//console.log("Tinu q "+$scope.accountnumber);
+		    	
+		    	
+		    	
+		    	if (response.data instanceof Array) {
+		    	    // data is an array
+		    		for (var i in response.data) {
+			    		//console.log('response.data[i] '+response.data[i]);
+			    		if(k<1){
+			    			accountnumber=response.data[i].accountnumber;
+			    			k++;
+			    		}
+			    		
+			    	    $('<option />', {value: response.data[i].accountnumber, text: response.data[i].accountnumber}).appendTo(s);
+			    	    
+			    	}
+		    	} else {
+		    	    // it is not an array
+		    		if(k<1){
+		    			accountnumber=response.data.accountnumber;
+		    			k++;
+		    		}
+		    		
+		    	    $('<option />', {value: response.data.accountnumber, text: response.data.accountnumber}).appendTo(s);
+		    		
+		    	}
+		    	
+		    });
+	};
+		 $scope.fund = function () {
+			  
+			 console.log("Transfering fund");
+
+			  function sucessupdate() 
+			    {
+			   	   alert("Fund Transfered Sucesufully !!!");
+		      }
+			  console.log("Trying to transfer fund");
+			  var accountId = localStorage.getItem("accountId");
+			  console.log("Account ID"+accountId);
+			  var amount =$scope.amount;
+			  console.log("Ammount"+amount);
+			 // var accountnumber =$scope.accountnumber;
+			 // console.log("Account number"+accountnumber);
+			  var thirdaccountnumber =$scope.thirdaccountnumber;
+			  console.log(" Third Account number"+thirdaccountnumber);
+			  $http.get(' http://localhost:8007/fundtransfer/all/'+accountId+"/"+amount+"/"+thirdaccountnumber);
+			 console.log("Fund Transfered"); 
+			 sucessupdate(); 
+			     
+			 },function(reason){
+		        	
+		        };
+
+
+
+});
 
 app.factory('InputParam', ['$resource', function($resource) {
 	return $resource('http://localhost:8001/inputrepo/:id', null,
@@ -274,7 +391,7 @@ app.controller('UploadCtrl', function ($scope, $resource, $rootScope, $q, AuthSe
 		row.ipmModel.service_level = row.service_level;
 		row.or_value = row.ipmModel.or_delivery;
 		console.log("log1 = "+JSON.stringify(row));
-		//var found = arr.filter(function(item) { return item.name === ; });
+		// var found = arr.filter(function(item) { return item.name === ; });
 		delete row["$$hashKey"];
 		$http.put('http://localhost:8001/inputrepo/'+row.skuLocation, JSON.stringify(row)
 		    ).then(function(response){
@@ -318,7 +435,8 @@ app.controller('UploadCtrl', function ($scope, $resource, $rootScope, $q, AuthSe
 				if ($rootScope.role != 'Planner') {
 	                url = 'http://localhost:8001/inputrepo';
 	            } else {
-	                url = 'http://localhost:8001/inputrepo';///user/' + $rootScope.user;
+	                url = 'http://localhost:8001/inputrepo';// /user/' +
+															// $rootScope.user;
 	            }
 				 $http.get(url)
 	             .then(function(res) {
@@ -327,7 +445,8 @@ app.controller('UploadCtrl', function ($scope, $resource, $rootScope, $q, AuthSe
 	            	 angular.forEach(res.data, function(item) {
 	            		// console.log('Kannan '+JSON.stringify(item));
 	            		 var attrb=Object.keys($column.filter)[0];
-	            		// console.log("test "+attrb+" "+JSON.stringify(item[attrb]));
+	            		// console.log("test "+attrb+"
+						// "+JSON.stringify(item[attrb]));
 	            			
 	            if (jQuery.inArray(item[attrb], arr) === -1) {
 	            	
@@ -355,7 +474,7 @@ app.controller('UploadCtrl', function ($scope, $resource, $rootScope, $q, AuthSe
 	            var page = params.page()-1;
 	            var size = params.count();
 	            
-	        //    var url = 'http://localhost:8001/inputrepo';
+	        // var url = 'http://localhost:8001/inputrepo';
 	            
 	            
 	            
@@ -366,7 +485,8 @@ app.controller('UploadCtrl', function ($scope, $resource, $rootScope, $q, AuthSe
 	                    params.total(data.page.totalElements);
 	                    $scope.data = params.sorting() ? $filter('orderBy')($rootScope.input, params.orderBy()) : $rootScope.input;
 						$scope.data = params.filter() ? $filter('filter')($scope.data, params.filter()) : $scope.data;
-					//	$scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+					// $scope.data = $scope.data.slice((params.page() - 1) *
+					// params.count(), params.page() * params.count());
 	                    $defer.resolve($scope.data);
 	                }, function(reason) {
 	                    $defer.reject();
@@ -444,7 +564,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
     });
 	
     $scope.check = function(){
-    	//var skulocation = $('#skulocationid').find(":selected").text();
+    	// var skulocation = $('#skulocationid').find(":selected").text();
     	var skulocation = $scope.skucodelocationItem;
     	$http.get("http://localhost:8001/dashboard1/"+skulocation)
         .then(function(response){
@@ -468,7 +588,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
     };
     
     $scope.check1 = function(){
-    	//var skulocation = $('#skulocationid').find(":selected").text();
+    	// var skulocation = $('#skulocationid').find(":selected").text();
     	var skulocation = $scope.skucodelocationCode;
     	
     	$http.get("http://localhost:8001/pastsales/"+skulocation)
@@ -631,7 +751,8 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
       	    	        }
     	    	    }
     	    	
-    	    	//console.log('Option data '+JSON.stringify(options.data.datasets[1].data));
+    	    	// console.log('Option data
+				// '+JSON.stringify(options.data.datasets[1].data));
 
     	    	    var ctx = document.getElementById('chart3').getContext('2d');
     	    	    new Chart(ctx, options);
@@ -647,7 +768,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
     	var k=0;
     	var skulocation="";
     	for (var i in response.data) {
-    		//console.log('response.data[i] '+response.data[i]);
+    		// console.log('response.data[i] '+response.data[i]);
     		if(k<1){
     			skulocation=response.data[i];
     			k++;
@@ -827,7 +948,8 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
       	    	        }
     	    	    }
     	    	
-    	    	//console.log('Option data '+JSON.stringify(options.data.datasets[1].data));
+    	    	// console.log('Option data
+				// '+JSON.stringify(options.data.datasets[1].data));
 
     	    	    var ctx = document.getElementById('chart3').getContext('2d');
     	    	    new Chart(ctx, options);
@@ -847,7 +969,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
     if ($rootScope.role != 'Planner') {
         url = 'http://localhost:8001/inputrepo';
     } else {
-        url = 'http://localhost:8001/inputrepo';///user/' + $rootScope.user;
+        url = 'http://localhost:8001/inputrepo';// /user/' + $rootScope.user;
     }
 	var httpPromise = $http.get(url);
     $scope.filterAgentStatus = function($column) {
@@ -875,9 +997,9 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
             	 $rootScope.input=res.data;
             	 
             	 angular.forEach(res.data, function(item) {
-            		 //console.log('Kannan '+JSON.stringify(item));
+            		 // console.log('Kannan '+JSON.stringify(item));
             		 var attrb=Object.keys($column.filter)[0];
-            	//	 console.log("test "+attrb+" "+JSON.stringify(item[attrb]));
+            	// console.log("test "+attrb+" "+JSON.stringify(item[attrb]));
             			
             if (jQuery.inArray(item[attrb], arr) === -1) {
             	
@@ -904,7 +1026,7 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
             var page = params.page()-1;
             var size = params.count();
             
-        //    var url = 'http://localhost:8001/inputrepo';
+        // var url = 'http://localhost:8001/inputrepo';
             
             
             
@@ -915,7 +1037,8 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
                     params.total(data.page.totalElements);
                     $scope.data = params.sorting() ? $filter('orderBy')($rootScope.input, params.orderBy()) : $rootScope.input;
 					$scope.data = params.filter() ? $filter('filter')($scope.data, params.filter()) : $scope.data;
-				//	$scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+				// $scope.data = $scope.data.slice((params.page() - 1) *
+				// params.count(), params.page() * params.count());
                     $defer.resolve($scope.data);
                 }, function(reason) {
                     $defer.reject();
@@ -940,7 +1063,8 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
                     params.total(data.page.totalElements);
                     $scope.data = params.sorting() ? $filter('orderBy')($rootScope.input, params.orderBy()) : $rootScope.input;
 					$scope.data = params.filter() ? $filter('filter')($scope.data, params.filter()) : $scope.data;
-				//	$scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+				// $scope.data = $scope.data.slice((params.page() - 1) *
+				// params.count(), params.page() * params.count());
                     $defer.resolve($scope.data);
                 }, function(reason) {
                     $defer.reject();
@@ -966,7 +1090,8 @@ app.controller('DashCtrl', function ($scope, $rootScope, $q, AuthService, $locat
                     params.total(data.page.totalElements);
                     $scope.data = params.sorting() ? $filter('orderBy')($rootScope.input, params.orderBy()) : $rootScope.input;
 					$scope.data = params.filter() ? $filter('filter')($scope.data, params.filter()) : $scope.data;
-				//	$scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+				// $scope.data = $scope.data.slice((params.page() - 1) *
+				// params.count(), params.page() * params.count());
                     $defer.resolve($scope.data);
                 }, function(reason) {
                     $defer.reject();

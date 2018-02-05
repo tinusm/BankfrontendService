@@ -1,22 +1,19 @@
-<div class="form-style-3"  ng-controller="FundTransCtrl" align="center">
+<div class="form-style-3"  ng-controller="ProfileCtrl" align="center">
 	<form>
 		<fieldset>
 
 			<legend></legend>
-			<br></br> <span>Fund Transfer <span class="required">
-			
-			
-<label for="accountnumber"><span>A/C Number</span>
-<select id="accountnumber" class="select-field" placeholder="accountnumber" ng-model="accountnumber" ng-init="change()">
-<option value=""  selected>--SelectAccount--</option>
-</select></label>
-
-<label for="amount"><span>Amount</span>
-<input type="text" placeholder="amount" ng-model="amount" name="amount" /></label>
-
-<label for="thirdaccountnumber">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Third Party AC/No</span>
-<input type="text" placeholder="thirdaccountnumber" ng-model="thirdaccountnumber" name="thirdaccountnumber" /> 
-<button ng-click="fund()"><span class="glyphicon glyphicon-log-in"></span> <strong>Submit</strong></button></label>
+			<br></br> <span>Customer Profile <span class="required">
+					<label for="field1"><span>Account ID <span
+							class="required"></span></span><input type="text" placeholder="accountid" ng-model="accountid"
+						name="accountid" readonly /></label> <label for="field2"><span>Email
+							ID <span class="required"></span>
+					</span><input type="text" placeholder="emailid" ng-model="emailid" name="emailid" /></label> <label
+					for="field3"><span>Address <span class="required"></span></span><input
+						type="text" placeholder="address" ng-model="address" name="address"  /></label> <label
+					for="field3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Phone Number <span
+							class="required"></span></span><input type="text" placeholder="phonenumber" ng-model="phonenumber"
+						name="phonenumber" /> <button ng-click="updateProfile()"><span class="glyphicon glyphicon-log-in"></span> <strong>Save</strong></button></label>
 					
 		</fieldset>
 	</form>
@@ -60,7 +57,7 @@
 }
 
 .form-style-3 input[type=text], .form-style-3 input[type=date],
-	.form-style-3 input[type=datetime], .form-style-3 input[type=number],.form-style-3 select,
+	.form-style-3 input[type=datetime], .form-style-3 input[type=number],
 	.form-style-3 textarea {
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
