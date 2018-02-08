@@ -1,0 +1,89 @@
+ <meta charset="UTF-8"> 
+<div class="form-style-3"  ng-controller="ConfirmFundTransCtrl" align="center">
+
+<script type="text/javascript">
+function clearField() {
+   if(document.getElementById) {
+      document.fundconfirmform.reset();
+   }
+}
+</script>
+	<form  name="fundconfirmform" onSubmit="clearField();">
+		<fieldset>
+
+			<legend></legend>
+			<br></br> <span> Confirm Fund Transfer <span class="required">
+			
+			
+<label for="accountnumber"><span>A/C Number</span>
+
+<input type="text" placeholder="accnumber" ng-model="accnumber" name="accnumber" readonly />
+</select></label>
+
+<label for="amount"><span>Amount</span>
+<input type="text" placeholder="amount" ng-model="amount" name="amount" readonly /></label>
+
+<label for="thirdaccountnumber"><span>Third Party AC/No</span>
+<input type="text" placeholder="thirdaccountnumber" ng-model="thirdaccountnumber" name="thirdaccountnumber" readonly /> 
+</label>
+<button ng-click="fund()"><span class="glyphicon glyphicon-log-in"></span> <strong>Confirm</strong></button>
+<button  formtarget="_blank"><span class="glyphicon glyphicon-log-in"></span> <strong>Cancel</strong></button></label>
+					
+		</fieldset>
+	</form>
+</div>
+<style type="text/css">
+.form-style-3 {
+	max-width: 2500px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.form-style-3 label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.form-style-3 label>span {
+	float: left;
+	width: 100px;
+	color: #010f11;
+	font-weight: bold;
+	font-size: 13px;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+.form-style-3 fieldset {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #010f11;
+	padding: 20px;
+	background: #41b2f4;
+	box-shadow: inset 0px 0px 15px #010f11;
+	-moz-box-shadow: inset 0px 0px 15px #010f11;
+	-webkit-box-shadow: inset 0px 0px 15px #010f11;
+}
+
+.form-style-3 textarea {
+	width: 250px;
+	height: 100px;
+}
+
+.form-style-3 input[type=text], .form-style-3 input[type=date],
+	.form-style-3 input[type=datetime], .form-style-3 input[type=number],.form-style-3 select,
+	.form-style-3 textarea {
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid #0ed0ea;
+	outline: none;
+	color: #6a6f70;
+	padding: 5px 8px 5px 8px;
+	box-shadow: inset 1px 1px 4px #FFD5E7;
+	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
+	-webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
+	background: #FFEFF6;
+	width: 20%;
+}
+</style>
