@@ -22,7 +22,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'templates/profile.html',
         controller: 'ProfileCtrl'
     }).
-
+    when('/confirmTransfer', {
+        templateUrl: 'templates/confirmTransfer.html',
+        controller: 'ConfirmFundTransCtrl'
+    }).
     otherwise({
         redirectTo: '/login'
     });
@@ -291,7 +294,7 @@ app.controller('ProfileCtrl', function($scope, $http, $rootScope,){
 		      };
 });
 
-app.controller('FundTransCtrl', function($scope, $http, $rootScope,){
+app.controller('FundTransCtrl', function($scope, $http, $rootScope,$location){
 	function manageMenu3() {
 	   	   
         $rootScope.fundTransferEnable = false;
@@ -342,7 +345,71 @@ app.controller('FundTransCtrl', function($scope, $http, $rootScope,){
 		    	
 		    });
 	};
-		 $scope.fund = function () {
+		
+
+	//Start
+	
+
+	
+	     $scope.confirmfund = function () {
+	    	 
+	    	
+		 console.log("Confirm Transfering fund");
+
+		
+		  var accountid = localStorage.getItem("accountId");
+		  console.log("Account ID"+accountid);
+		  
+		  var accountnumber = $scope.accountnumber;
+		  localStorage.setItem("accountnumber", accountnumber);
+		  console.log("Account number"+accountnumber);
+		  
+		  var amount =$scope.amount;
+		  localStorage.setItem("amount", amount);
+		  console.log("Ammount"+amount);
+		 
+		  var thirdaccountnumber =$scope.thirdaccountnumber;
+		  localStorage.setItem("thirdaccountnumber", thirdaccountnumber);
+		  console.log(" Third Account number"+thirdaccountnumber);
+		  
+		// var url = 'templates/confirmTransfer.html';
+		// var url = "templates/confirmTransfer.html?var1="+accnum+ "&var2=" + amount+ "&var3=" + thirdaccountnumber;;
+		// var myWindow = window.open(url, "", "width=800,height=600");
+		  
+		  
+		  $location.url("/confirmTransfer");
+		     
+		 },function(reason){
+	        	
+	        };
+
+	
+	
+	
+	//end
+	
+	
+	
+	
+	
+
+		        
+});
+
+
+
+
+
+
+app.controller('ConfirmFundTransCtrl', function ($scope, $http) {
+   
+
+	$scope.accnumber= localStorage.getItem("accountnumber");
+	$scope.amount= localStorage.getItem("amount");
+	$scope.thirdaccountnumber= localStorage.getItem("thirdaccountnumber");
+    
+	//Start	
+	$scope.fund = function () {
 			  
 			 console.log("Transfering fund");
 
@@ -362,14 +429,21 @@ app.controller('FundTransCtrl', function($scope, $http, $rootScope,){
 			  $http.get(' http://localhost:8007/fundtransfer/all/'+accountId+"/"+amount+"/"+thirdaccountnumber);
 			 console.log("Fund Transfered"); 
 			 sucessupdate(); 
+			 
 			     
 			 },function(reason){
 		        	
 		        };
+//End
+	
+    	
+    });
 
 
 
-});
+
+
+
 
 app.factory('InputParam', ['$resource', function($resource) {
 	return $resource('http://localhost:8001/inputrepo/:id', null,
