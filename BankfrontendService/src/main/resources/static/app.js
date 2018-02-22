@@ -56,7 +56,7 @@ app.factory('AuthService', function ($resource) {
 	// & password=:password', {
 	// return $resource('http://localhost:8002/authenticate?username=:username &
 	// password=:password', {
-	return $resource('http://localhost:8002/authenticate/:username/:password', {
+	return $resource('https://bankauthenticationservice.mybluemix.net/authenticate/:username/:password', {
 	
         username: '@username',
         password: '@password'
@@ -236,7 +236,7 @@ app.controller('AcctCtrl', function($scope, $http, $rootScope,){
 }
 	manageMenu4();
 	var accountId = localStorage.getItem("accountId");
-	$http.get("http://localhost:8005/accountsummary/all/"+accountId)
+	$http.get("https://bankaccountsummary.mybluemix.net/accountsummary/all/"+accountId)
     .then(function(response){
     	var data = response.data;
     	$scope.accountnumber = data.accountnumber;
@@ -262,7 +262,7 @@ app.controller('ProfileCtrl', function($scope, $http, $rootScope,){
 	    
 	 manageMenu2();
 	var accountId = localStorage.getItem("accountId");
-	$http.get("http://localhost:8006/profile/all/"+accountId)
+	$http.get("https://bankprofileservice.mybluemix.net/profile/all/"+accountId)
     .then(function(response){
     	var data = response.data;
     	$scope.accountid = data.accountid;
@@ -288,7 +288,7 @@ app.controller('ProfileCtrl', function($scope, $http, $rootScope,){
 		  var address =$scope.address;
 		  var phonenumber =$scope.phonenumber;
 		  console.log(accountid,emailid,address,phonenumber);
-		  $http.put('http://localhost:8006/profile/updateprofile/'+accountid+"/"+emailid+"/"+address+"/"+phonenumber);
+		  $http.put('https://bankprofileservice.mybluemix.net/profile/updateprofile/'+accountid+"/"+emailid+"/"+address+"/"+phonenumber);
 		 console.log("Profile Update"); 
 		 sucessupdate(); 
 		      };
@@ -311,7 +311,7 @@ app.controller('FundTransCtrl', function($scope, $http, $rootScope,$location){
 	     var k=0;
 	     var accountnumber="";
 		 var accountId = localStorage.getItem("accountId");
-			$http.get("http://localhost:8007/fundtransfer/all/"+accountId)
+			$http.get("https://bankfundtransfer.mybluemix.net/fundtransfer/all/"+accountId)
 		    .then(function(response){
 		    	//var data = response.data;
 		    	//$scope.accountnumber= data.accountnumber;
@@ -426,7 +426,9 @@ app.controller('ConfirmFundTransCtrl', function ($scope, $http) {
 			 // console.log("Account number"+accountnumber);
 			  var thirdaccountnumber =$scope.thirdaccountnumber;
 			  console.log(" Third Account number"+thirdaccountnumber);
-			  $http.get(' http://localhost:8007/fundtransfer/all/'+accountId+"/"+amount+"/"+thirdaccountnumber);
+			  
+			  
+			  $http.get(' https://bankfundtransfer.mybluemix.net/fundtransfer/all/'+accountId+"/"+amount+"/"+thirdaccountnumber);
 			 console.log("Fund Transfered"); 
 			 sucessupdate(); 
 			 
